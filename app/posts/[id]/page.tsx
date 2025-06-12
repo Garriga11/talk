@@ -3,7 +3,12 @@ export const dynamic = "force-dynamic"; // This disables SSG and ISR
 import prisma from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
 
-export default async function Post({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+export default async function Post({ params }: PageProps) {
   const { id } = params;
   const postId = id; // Use as string
 
@@ -34,18 +39,18 @@ export default async function Post({ params }: { params: { id: string } }) {
       <article className="max-w-3xl w-full bg-white shadow-lg rounded-lg p-8">
         {/* Post Title */}
         <h1 className="text-5xl font-extrabold text-gray-900 mb-4">
-          {post.title}
+          {post!.title}
         </h1>
 
         {/* Author Information */}
         <p className="text-lg text-gray-600 mb-4">
-          by <span className="font-medium text-gray-800">{post.author?.name || "Anonymous"}</span>
+          by <span className="font-medium text-gray-800">{post!.author?.name || "Anonymous"}</span>
         </p>
 
         {/* Content Section */}
         <div className="text-lg text-gray-800 leading-relaxed space-y-6 border-t pt-6">
-          {post.content ? (
-            <p>{post.content}</p>
+          {post!.content ? (
+            <p>{post!.content}</p>
           ) : (
             <p className="italic text-gray-500">No content available for this post.</p>
           )}
