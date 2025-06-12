@@ -5,7 +5,7 @@ import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 
 interface Post {
-  id: number;
+  id: string;
   title: string;
   content?: string;
   createdAt: string;
@@ -14,7 +14,6 @@ interface Post {
   };
 }
 
-// Disable static generation
 export const dynamic = "force-dynamic";
 
 function PostsList() {
@@ -59,6 +58,7 @@ function PostsList() {
             <p className="text-gray-600">No posts available.</p>
           ) : (
             <ul className="space-y-6 w-full max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {posts.map((post) => (
                 <li key={post.id} className="border p-6 rounded-lg shadow-md bg-white">
                   <Link href={`/posts/${post.id}`} className="text-2xl font-semibold text-gray-900 hover:underline">
@@ -74,6 +74,7 @@ function PostsList() {
                   </p>
                 </li>
               ))}
+              </div>
             </ul>
           )}
 

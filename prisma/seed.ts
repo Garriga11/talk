@@ -4,154 +4,159 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Create 5 users with hashed passwords
+  
   const users = await Promise.all([
     prisma.user.create({
       data: {
-        email: 'alice@example.com',
-        name: 'Alice',
+        email: 'garriga11@outlook.com',
+        name: 'garriga',
         password: await bcrypt.hash('password123', 10),
       },
     }),
     prisma.user.create({
       data: {
-        email: 'bob@example.com',
-        name: 'Bob',
+        email: 'john@example.com',
+        name: 'john',
         password: await bcrypt.hash('password123', 10),
       },
     }),
     prisma.user.create({
       data: {
-        email: 'charlie@example.com',
-        name: 'Charlie',
+        email: 'james@example.com',
+        name: 'james',
         password: await bcrypt.hash('password123', 10),
       },
     }),
     prisma.user.create({
       data: {
-        email: 'diana@example.com',
-        name: 'Diana',
+        email: 'jay@example.com',
+        name: 'jay',
         password: await bcrypt.hash('password123', 10),
       },
     }),
     prisma.user.create({
       data: {
-        email: 'edward@example.com',
-        name: 'Edward',
+        email: 'scott@example.com',
+        name: 'scott',
         password: await bcrypt.hash('password123', 10),
       },
     }),
   ]);
 
   const userIdMapping = {
-    alice: users[0].id,
-    bob: users[1].id,
-    charlie: users[2].id,
-    diana: users[3].id,
-    edward: users[4].id,
+    garriga: users[0].id,
+    john: users[1].id,
+    james: users[2].id,
+    jay: users[3].id,
+    scott: users[4].id,
   };
 
   // Create 15 posts distributed among users
   await prisma.post.createMany({
     data: [
-      // Alice's posts
+      
       { 
-        title: 'Getting Started with TypeScript and Prisma', 
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id erat a lorem tincidunt ultricies. Vivamus porta bibendum nulla vel accumsan.', 
+        title: 'Savvy: A G19 Programs App', 
+        content: 'Savvy: A social media prototype, a G19 Programs app, butilt on Next.js, Prisma, and Tailwind CSS. It features user authentication, profile management, and a feed of posts from followed users.',
         published: true, 
-        authorId: userIdMapping.alice 
+        authorId: userIdMapping.garriga
       },
+      
       { 
-        title: 'How ORMs Simplify Complex Queries', 
-        content: 'Duis sagittis urna ut sapien tristique convallis. Aenean vel ligula felis. Phasellus bibendum sem at elit dictum volutpat.', 
-        published: false, 
-        authorId: userIdMapping.alice 
+        title: 'Prisma vs. Other ORMs: Why Developers are Switching', 
+        content: 'Database management can make or break a web application’s performance. Prisma offers type safety, migrations, and a sleek query engine—but is it the right tool for you?',
+        published: true,
+        authorId: userIdMapping.garriga 
       },
 
-      // Bob's posts
+      
       { 
-        title: 'Mastering Prisma: Efficient Database Migrations', 
-        content: 'Ut ullamcorper nec erat id auctor. Nullam nec ligula in ex feugiat tincidunt. Cras accumsan vehicula tortor ut eleifend.', 
+        title:  'Debugging Deployment Issues: A Developer’s Survival Guide', 
+        content: 'Ever deployed an app only to find database conflicts, failing builds, and styling inconsistencies? Here’s a step-by-step guide to overcoming the most common deployment roadblocks.',
         published: true, 
-        authorId: userIdMapping.bob 
+        authorId: userIdMapping.john
       },
       { 
         title: 'Best Practices for Type Safety in ORMs', 
         content: 'Aliquam erat volutpat. Suspendisse potenti. Maecenas fringilla elit vel eros laoreet, et tempor sapien vulputate.', 
         published: true, 
-        authorId: userIdMapping.bob 
+        authorId: userIdMapping.john
       },
       { 
-        title: 'TypeScript Utility Types for Database Models', 
-        content: 'Donec ac magna facilisis, vestibulum ligula at, elementum nisl. Morbi volutpat eget velit eu egestas.', 
+        title: 'Simplifying Web Development: How to Build Faster Without Losing Quality', 
+        content: 'Developers often juggle speed and functionality when building web apps. But what if you could simplify development without sacrificing features? Let’s explore some proven strategies.',
         published: false, 
-        authorId: userIdMapping.bob 
+        authorId: userIdMapping.john
+      },
+      
+
+
+      { 
+        title: 'Integrating TalkJS for Real-Time Messaging in Next.js', 
+        content: 'Integrating TalkJS for Real-Time Messaging in Next.js is a breeze with its intuitive API. This guide walks you through setting up TalkJS in your Next.js application, enabling real-time chat features effortlessly.',
+        published: true, 
+        authorId: userIdMapping.jay
+      },
+      { 
+        title: 'Webhooks vs. APIs: Choosing the Right Data Flow', 
+        content: 'Webhooks and APIs serve different purposes in data flow. This article explains when to use each, how they work, and the best practices for implementing them in your applications.',
+        published: true, 
+        authorId: userIdMapping.jay 
+      },
+      { 
+        title: 'Debugging Prisma Errors: A Practical Guide', 
+        content: 'Prisma makes database interactions easy—until it doesn’t. If you’ve ever run into migration conflicts, relation issues, or unexpected queries, this guide will save you hours of debugging.',
+        published: true,
+        authorId: userIdMapping.jay
       },
 
-      // Charlie's posts (no posts for Charlie)
-
-      // Diana's posts
+      
       { 
-        title: 'Exploring Database Indexes and Their Performance Impact', 
-        content: 'Vivamus ac velit tincidunt, sollicitudin erat quis, fringilla enim. Aenean posuere est a risus placerat suscipit.', 
+        title: 'How I Optimized My Next.js App for Lightning-Fast Performance', 
+        content: 'Performance isn’t just about speed—it’s about reliability and scalability. Here’s how I tackled bottlenecks in my Next.js project and got it running smoother than ever.', 
         published: true, 
-        authorId: userIdMapping.diana 
+        authorId: userIdMapping.scott
       },
       { 
-        title: 'Choosing the Right Database for Your TypeScript Project', 
-        content: 'Sed vel suscipit lorem. Duis et arcu consequat, sagittis justo quis, pellentesque risus. Curabitur sed consequat est.', 
-        published: false, 
-        authorId: userIdMapping.diana 
-      },
-      { 
-        title: 'Designing Scalable Schemas with Prisma', 
-        content: 'Phasellus ut erat nec elit ultricies egestas. Vestibulum rhoncus urna eget magna varius pharetra.', 
+        title: 'Scaling Real-Time Chat: Handling Thousands of Messages per Second', 
+        content: 'Building a chat system is easy—scaling it is the real challenge. Here’s how to optimize messaging throughput while keeping interactions real-time and responsive.',
         published: true, 
-        authorId: userIdMapping.diana 
+        authorId: userIdMapping.scott
       },
       { 
-        title: 'Handling Relations Between Models in ORMs', 
-        content: 'Integer luctus ac augue at tristique. Curabitur varius nisl vitae mi fringilla, vel tincidunt nunc dictum.', 
-        published: false, 
-        authorId: userIdMapping.diana 
-      },
-
-      // Edward's posts
-      { 
-        title: 'Why TypeORM Still Has Its Place in 2025', 
-        content: 'Morbi non arcu nec velit cursus feugiat sit amet sit amet mi. Etiam porttitor ligula id sem molestie, in tempor arcu bibendum.', 
+        title: 'The Power of Tailwind CSS: Why Developers Are Switching',
+        content: 'Tailwind CSS is more than just a utility-first framework; it’s a game-changer for rapid UI development. This article explores why developers are making the switch and how it can benefit your projects.', 
+        
         published: true, 
-        authorId: userIdMapping.edward 
+        authorId: userIdMapping.scott
       },
+      
+     
       { 
-        title: 'NoSQL vs SQL: The Definitive Guide for Developers', 
-        content: 'Suspendisse a ligula sit amet risus ullamcorper tincidunt. Curabitur tincidunt, sapien id fringilla auctor, risus libero gravida odio, nec volutpat libero orci nec lorem.', 
+        title: 'Building a Chat App with Next.js and Prisma', 
+        content: 'Building a chat app with Next.js and Prisma is straightforward. This guide walks you through setting up real-time messaging, user authentication, and database management using these powerful tools.',
         published: true, 
-        authorId: userIdMapping.edward 
-      },
-      { 
-        title: 'Optimizing Queries with Prisma\'s Select and Include', 
-        content: 'Proin vel diam vel nisi facilisis malesuada. Sed vitae diam nec magna mollis commodo a vitae nunc.', 
-        published: false, 
-        authorId: userIdMapping.edward 
-      },
-      { 
-        title: 'PostgreSQL Optimizations Every Developer Should Know', 
-        content: 'Nullam mollis quam sit amet lacus interdum, at suscipit libero pellentesque. Suspendisse in mi vitae magna finibus pretium.', 
-        published: true, 
-        authorId: userIdMapping.edward 
-      },
-      { 
-        title: 'Scaling Applications with Partitioned Tables in PostgreSQL', 
-        content: 'Cras vitae tortor in mauris tristique elementum non id ipsum. Nunc vitae pulvinar purus.', 
-        published: true, 
-        authorId: userIdMapping.edward 
+        authorId: userIdMapping.scott
       },
     ],
   });
 
+await prisma.chat.createMany({
+  data: [
+    {
+      content: "Hello, how's the project?",
+      userId: users[0].id, 
+    },
+    {
+      content: "Going great, just finishing up the API.",
+      userId: users[1].id, 
+    },
+  ],
+});
+
+  
   console.log('Seeding completed.');
-}
+} 
 
 main()
   .then(async () => {
@@ -162,3 +167,5 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
+
+

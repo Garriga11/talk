@@ -10,12 +10,12 @@ export default function Header() {
     <header className="w-full bg-white shadow-md py-4 px-8">
       <nav className="flex justify-between items-center">
         <Link href="/" className="text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors">
-          Superblog
+       Savvy
         </Link>
         <div className="flex items-center space-x-4">
           <Link 
             href="/posts" 
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            className="bg-black text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
           >
             Posts
           </Link>
@@ -23,7 +23,7 @@ export default function Header() {
             <>
               <Link 
                 href="/posts/new" 
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+                className="bg-black text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
               >
                 New Post
               </Link>
@@ -34,17 +34,23 @@ export default function Header() {
                 </div>
                 <button
                   onClick={() => signOut()}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                  className="bg-black text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
                 >
                   Sign Out
                 </button>
               </div>
             </>
           ) : (
-            <Link href="/login" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+            <Link href="/login" className="bg-black text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
               Sign In
             </Link>
+
+            
           )}
+
+          <Link href="/chat" className="bg-black text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+            Chat
+          </Link>
         </div>
       </nav>
     </header>
