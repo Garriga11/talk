@@ -141,30 +141,30 @@ async function main() {
     ],
   });
 
+// ...existing user creation code...
+
 // 1. Create a conversation
 const conversation = await prisma.conversation.create({
   data: {},
 });
 
-
+// 2. Create chat messages in that conversation
 await prisma.chat.createMany({
   data: [
     {
       content: "Hey, how are you?",
-      senderId: users[0].id, 
-      conversationId: conversation.id, 
+      senderId: users[0].id,
+      conversationId: conversation.id,
       createdAt: new Date(),
     },
     {
       content: "I'm good! How about you?",
-      senderId: users[1].id, 
-      conversationId: conversation.id, 
+      senderId: users[1].id,
+      conversationId: conversation.id,
       createdAt: new Date(),
     },
   ],
 });
-
-
 
 
 

@@ -4,9 +4,9 @@ import prisma from '@/lib/prisma'
 type TalkMessagePayload = {
   event: 'message.sent'
   data: {
-    message: {
+    chat: {
       id: string
-      text: string
+      content: string
       createdAt: number
       senderId: string
     }
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'ignored' })
     }
 
-    const { message, senderId, conversationId } = body.data
+    const { chat, senderId, conversationId } = body.data
 
     // Upsert user by id
     const sender = await prisma.user.upsert({
@@ -47,14 +47,14 @@ export async function POST(req: NextRequest) {
     })
 
 await prisma.chat.upsert({
-  where: { id: message.id },
+  where: { id: chat.id },
   update: {},
   create: {
-    id: message.id,
-    content: message.text,
+    id: chat.id,
+    content: chat.content,
     senderId: sender.id,
     conversationId: convo.id,
-    createdAt: new Date(message.createdAt)
+    createdAt: new Date(chat.createdAt)
   }
 });
 
