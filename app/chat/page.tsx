@@ -9,12 +9,19 @@ interface User {
   email: string;
 }
 
-interface TalkJSChatProps {
-  user: User;
-  otherUser: User;
-}
+export default function ChatPage() {
+  // For demo/testing, define users here.
+  const user: User = {
+    id: "user1",
+    name: "scott",
+    email: "scott@example.com",
+  };
+  const otherUser: User = {
+    id: "user2",
+    name: "garriga",
+    email: "garriga19@gmail.com",
+  };
 
-export default function TalkJSChat({ user, otherUser }: TalkJSChatProps) {
   const chatboxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,13 +56,12 @@ export default function TalkJSChat({ user, otherUser }: TalkJSChatProps) {
       chatbox.mount(chatboxRef.current!);
     });
 
-    // Cleanup on unmount
     return () => {
       if (session) {
         session.destroy();
       }
     };
-  }, [user, otherUser]);
+  }, []);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-100 via-white to-pink-100">
