@@ -141,18 +141,32 @@ async function main() {
     ],
   });
 
+// 1. Create a conversation
+const conversation = await prisma.conversation.create({
+  data: {},
+});
+
+
 await prisma.chat.createMany({
   data: [
     {
-      content: "Hello, how's the project?",
-      userId: users[0].id, 
+      content: "Hey, how are you?",
+      senderId: users[0].id, 
+      conversationId: conversation.id, 
+      createdAt: new Date(),
     },
     {
-      content: "Going great, just finishing up the API.",
-      userId: users[1].id, 
+      content: "I'm good! How about you?",
+      senderId: users[1].id, 
+      conversationId: conversation.id, 
+      createdAt: new Date(),
     },
   ],
 });
+
+
+
+
 
   
   console.log('Seeding completed.');
