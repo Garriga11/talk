@@ -31,7 +31,9 @@ export async function POST(req: NextRequest) {
       update: {},
       create: {
         id: senderId,
-        name: senderId.replace('test_', '') // fallback name from ID
+        name: senderId.replace('test_', ''), // fallback name from ID
+        email: `${senderId}@example.com`, // placeholder email
+        password: 'changeme' 
       }
     })
 
@@ -44,15 +46,17 @@ export async function POST(req: NextRequest) {
       }
     })
 
-    // Create the chat message
-    await prisma.chat.create({
-      data: {
-        content: message.text,
-        senderId: sender.id,
-        conversationId: convo.id,
-        createdAt: new Date(message.createdAt)
-      }
-    })
+await prisma.chat.upsert({
+  where: { id: message.id },
+  update: {},
+  create: {
+    id: message.id,
+    content: message.text,
+    senderId: sender.id,
+    conversationId: convo.id,
+    createdAt: new Date(message.createdAt)
+  }
+});
 
     return NextResponse.json({ message: 'saved' }, { status: 200 })
   } catch (err) {
