@@ -8,10 +8,10 @@ type TalkMessagePayload = {
       id: string
       content: string
       createdAt: number
-      senderId: string
+      userId: string
     }
     conversationId: string
-    senderId: string
+    userId: string
   }
 }
 
