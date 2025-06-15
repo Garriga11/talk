@@ -28,8 +28,17 @@ model Post {
 }
 
 model Chat {
-  id      String @id @default(uuid())
-  content String
-  userId  String
-  user    User   @relation(fields: [userId], references: [id])
+  id             String        @id @default(uuid())
+  content        String
+  userId         String
+  user           User          @relation(fields: [userId], references: [id])
+  Conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  conversationId String?
+}
+
+model Conversation {
+  id        String   @id @default(uuid())
+  talkId    String   @unique
+  chat      Chat[]
+  createdAt DateTime @default(now())
 }
