@@ -8,13 +8,20 @@ async function main() {
   const users = await Promise.all([
     prisma.user.create({
       data: {
+        id: "0",
+        talkId: "test_user0",
         email: 'garriga11@outlook.com',
         name: 'garriga',
         password: await bcrypt.hash('password123', 10),
+     
       },
+
+
     }),
     prisma.user.create({
       data: {
+        id: "1",
+        talkId: "test_user1",
         email: 'john@example.com',
         name: 'john',
         password: await bcrypt.hash('password123', 10),
@@ -22,20 +29,26 @@ async function main() {
     }),
     prisma.user.create({
       data: {
+        id: "2",
+        talkId: "test_user2",
         email: 'james@example.com',
         name: 'james',
         password: await bcrypt.hash('password123', 10),
       },
     }),
     prisma.user.create({
-      data: {
+      data: { 
+        id: "3",
+        talkId: "test_user3", 
         email: 'jay@example.com',
         name: 'jay',
         password: await bcrypt.hash('password123', 10),
       },
     }),
     prisma.user.create({
-      data: {
+      data: { 
+        id: "4",
+        talkId: "test_user4",
         email: 'scott@example.com',
         name: 'scott',
         password: await bcrypt.hash('password123', 10),
@@ -153,13 +166,13 @@ await prisma.chat.createMany({
   data: [
     {
       content: "Hey, how are you?",
-      senderId: users[0].id,
+      userId: users[0].id,
       conversationId: conversation.id,
       createdAt: new Date(),
     },
     {
       content: "I'm good! How about you?",
-      senderId: users[1].id,
+      userId: users[1].id,
       conversationId: conversation.id,
       createdAt: new Date(),
     },

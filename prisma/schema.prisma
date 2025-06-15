@@ -9,6 +9,7 @@ datasource db {
 
 model User {
   id       String  @id @default(cuid())
+  talkId   String? @unique // <-- Add this line
   name     String?
   email    String  @unique
   password String
@@ -34,11 +35,12 @@ model Chat {
   user           User          @relation(fields: [userId], references: [id])
   Conversation   Conversation? @relation(fields: [conversationId], references: [id])
   conversationId String?
+  createdAt      DateTime     @default(now())
 }
 
 model Conversation {
   id        String   @id @default(uuid())
-  talkId    String   @unique
+  talkId    String?  @unique // <-- Add this line
   chat      Chat[]
   createdAt DateTime @default(now())
 }
