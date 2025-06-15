@@ -23,16 +23,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'ignored' })
     }
 
-    const { chat, senderId, conversationId } = body.data
+    const { chat, userId, conversationId } = body.data
 
     // Upsert user by id
     const sender = await prisma.user.upsert({
-      where: { id: senderId },
+      where: { id: userId },
       update: {},
       create: {
-        id: senderId,
-        name: senderId.replace('test_', ''), // fallback name from ID
-        email: `${senderId}@example.com`, // placeholder email
+        id: userId,
+        name: userId.replace('test_', ''), // fallback name from ID
+        email: `${userId}@example.com`, // placeholder email
         password: 'changeme' 
       }
     })
