@@ -52,7 +52,7 @@ await prisma.chat.upsert({
   create: {
     id: chat.id,
     content: chat.content,
-    senderId: sender.id,
+    userId: chat.userId,
     conversationId: convo.id,
     createdAt: new Date(chat.createdAt)
   }
