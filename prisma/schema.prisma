@@ -8,12 +8,12 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(cuid())
-  talkId   String? @unique // <-- Add this line
+  id       String    @id @default(cuid())
+  talkId   String?   @unique // <-- Add this line
   name     String?
-  email    String  @unique
+  email    String    @unique
   password String
-  chat     Chat[]
+  messages Message[]
   posts    Post[]
 }
 
@@ -28,19 +28,22 @@ model Post {
   author    User?    @relation(fields: [authorId], references: [id])
 }
 
-model Chat {
-  id             String        @id @default(uuid())
-  content        String
-  userId         String
-  user           User          @relation(fields: [userId], references: [id])
-  Conversation   Conversation? @relation(fields: [conversationId], references: [id])
-  conversationId String?
-  createdAt      DateTime     @default(now())
-}
+
+
 
 model Conversation {
-  id        String   @id @default(uuid())
-  talkId    String?  @unique // <-- Add this line
-  chat      Chat[]
-  createdAt DateTime @default(now())
+id String @id @default(cuid())
+talkId String @unique
+messages Message[]
+createdAt DateTime @default(now())
+}
+
+model Message {
+id String @id
+content String
+senderId String
+sender User @relation(fields: [senderId], references: [id])
+conversationId String
+conversation Conversation @relation(fields: [conversationId], references: [id])
+createdAt DateTime
 }
