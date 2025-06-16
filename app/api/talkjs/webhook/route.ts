@@ -43,7 +43,7 @@ const conversation = await prisma.conversation.upsert({
 })
 
 // Save message
-await prisma.messages.create({
+await prisma.message.create({
   data: {
     id: message.id,
     content: message.text,
