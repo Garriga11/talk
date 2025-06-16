@@ -145,15 +145,17 @@ talkId: 'test_convo1',
 })
 
 // Create messages in the conversation
-await prisma.messages.upsert({
+await prisma.message.createMany({
 data: [
 {
+id: 'msg1',
 content: 'Hey, how are you?',
 senderId: users[0].id,
 conversationId: conversation.id,
 createdAt: new Date(),
 },
 {
+id: 'msg2',
 content: "I'm good! How about you?",
 senderId: users[1].id,
 conversationId: conversation.id,
