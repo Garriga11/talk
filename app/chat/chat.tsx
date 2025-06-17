@@ -17,7 +17,7 @@ export default function ChatClient({ user, otherUser }: ChatClientProps) {
       const me = new Talk.User(user);
       const other = new Talk.User(otherUser);
       session = new Talk.Session({
-        appId: "YOUR_TALKJS_APP_ID", // <-- Hardcode your app ID here
+        appId: "t1UpX8aQ", // <-- Hardcode your app ID here
         me,
       });
       const conversation = session.getOrCreateConversation(Talk.oneOnOneId(me, other));
