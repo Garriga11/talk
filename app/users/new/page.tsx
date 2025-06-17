@@ -10,9 +10,15 @@ export default function NewUser() {
 
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
 
     await prisma.user.create({
-      data: { name, email, password: "" }, // password will be added by NextAuth
+      data: { 
+        name, 
+        email, 
+        password: "", // password will be added by NextAuth
+        talkId: "default-talk-id" // Replace with actual talkId logic as needed
+      },
     });
 
     redirect("/");
