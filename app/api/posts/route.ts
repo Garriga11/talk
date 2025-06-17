@@ -13,16 +13,15 @@ export async function GET(request: Request) {
   const posts = await prisma.post.findMany({
     skip: offset,
     take: postsPerPage,
-    orderBy: { createdAt: "desc" },
+    orderBy: { id: "desc" },
     select: {
       id: true,
       title: true,
       content: true,
-      published: true,
-      createdAt: true,
-      updatedAt: true,
-      authorId: true,
-      author: { select: { name: true } },
+  published: true,
+ 
+  authorId: true,
+  author: { select: { name: true } },
     },
   });
 
