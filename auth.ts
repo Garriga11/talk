@@ -27,6 +27,7 @@ export const authOptions = {
               name: credentials.name ?? credentials.email,
               email: credentials.email,
               password: await bcrypt.hash(credentials.password, 10),
+              talkId: crypto.randomUUID(), // or use any method to generate a unique string
             },
           });
         }
