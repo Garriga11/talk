@@ -29,9 +29,10 @@ const sender = await prisma.user.upsert({
   where: { talkId: senderId },
   update: {},
   create: {
+    name: senderId.replace('test_', ''),
+    email: `${senderId}@example.com`,
     talkId: senderId,
-    name: senderId.replace('test_', ''), // fallback name
-    email: `${senderId}@example.com`
+    password: 'defaultpassword' // Replace with a secure value or generate as needed
   }
 })
 
@@ -42,7 +43,7 @@ const conversation = await prisma.conversation.upsert({
   create: { talkId: conversationId }
 })
 
-// Save message
+
 await prisma.message.create({
   data: {
     id: message.id,
