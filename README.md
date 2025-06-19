@@ -69,5 +69,4 @@ Ensure production `.env` values are set in your Vercel project settings.
 - [Next.js App Router](https://nextjs.org/docs/app)  
 - [NextAuth.js Docs](https://next-auth.js.org)
 
-
-See more ad garriga19programs.com
+See more at garriga19programs.com
